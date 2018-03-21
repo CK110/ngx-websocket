@@ -7,7 +7,7 @@ export class WebsocketService {
 
   ws: WebSocket;
 
-  message$ = new BehaviorSubject<any>(null);
+  message$ = new BehaviorSubject<any>({});
 
   constructor() {
     this.ws = new WebSocket('ws://123.207.167.163:9010/ajaxchattest');
