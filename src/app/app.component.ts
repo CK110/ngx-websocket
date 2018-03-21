@@ -14,7 +14,9 @@ export class AppComponent {
 
   constructor(public websocketService: WebsocketService) {
     this.websocketService.getMessage().subscribe((message) => {
-      this.messageList.push(message.data);
+      if(message.data) {
+        this.messageList.push(message.data);
+      }
     });
   }
 
