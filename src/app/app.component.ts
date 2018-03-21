@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {WebsocketService} from '../websocket/websocket.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  messageList: any[] = [];
+
+  message: any = '';
+
+  constructor(public websocketService: WebsocketService) {
+    this.websocketService.getMessage().subscribe((message) => {
+      this.messageList.push(message.data);
+    });
+  }
+
+  send() {
+    this.websocketService.send(this.message);
+  }
+
+  close() {
+    this.websocketService.close();
+  }
+
+
 }
